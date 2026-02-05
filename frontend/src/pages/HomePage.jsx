@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { Card } from "../components/ui/card";
 import { CheckCircle, Shield, Clock, BarChart3 } from "lucide-react";
-import PlagiarismCheckerHero from "../components/PlagiarismCheckerHero";
 import Header from "../components/Header";
 
 const HomePage = () => {
@@ -15,22 +14,18 @@ const HomePage = () => {
       {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-content">
-          <h1 className="hero-title">Detect Plagiarism with Confidence</h1>
+          <h1 className="hero-title">Kiểm tra nội dung nhanh và chính xác</h1>
           <p className="hero-subtitle">
-            Advanced plagiarism detection powered by intelligent algorithms. Paste your text, upload a file, or try a
-            sample to get instant results.
+            Chọn "Kiểm tra đạo văn" hoặc "Kiểm tra AI" trên thanh điều hướng để bắt đầu.
           </p>
         </div>
-        
-        {/* Plagiarism Checker Component */}
-        <PlagiarismCheckerHero />
-        
+
         <div className="review-text">
           <div className="review-content">
             <div className="flex items-center gap-1">
               <span className="review-rating">4.5/5</span>
               <span>•</span>
-              <span>Based on 12,623 reviews</span>
+              <span>Dựa trên 12,623 đánh giá</span>
             </div>
           </div>
         </div>
@@ -41,15 +36,15 @@ const HomePage = () => {
         <div className="stats-grid">
           <div className="stats-item">
             <div className="stats-number">99.9%</div>
-            <div className="stats-label">Accuracy Rate</div>
+            <div className="stats-label">Tỷ lệ chính xác</div>
           </div>
           <div className="stats-item">
             <div className="stats-number">10M+</div>
-            <div className="stats-label">Documents Checked</div>
+            <div className="stats-label">Tài liệu đã kiểm tra</div>
           </div>
           <div className="stats-item">
             <div className="stats-number">50K+</div>
-            <div className="stats-label">Active Users</div>
+            <div className="stats-label">Người dùng hoạt động</div>
           </div>
         </div>
       </section>
@@ -57,7 +52,7 @@ const HomePage = () => {
       {/* Features Section */}
       <section id="features" className="features-section">
         <div className="features-container">
-          <h2 className="features-title">Why Choose PlagiarismCheck?</h2>
+          <h2 className="features-title">Vì sao chọn Checker?</h2>
           <div className="features-grid">
             <Card className="card-feature">
               <div className="feature-card">
@@ -65,10 +60,9 @@ const HomePage = () => {
                   <CheckCircle className="feature-icon" />
                 </div>
                 <div>
-                  <h3 className="feature-title">Accurate Detection</h3>
+                  <h3 className="feature-title">Phát hiện chính xác</h3>
                   <p className="feature-description">
-                    Our advanced algorithms detect even the smallest instances of plagiarism with industry-leading
-                    accuracy.
+                    Thuật toán giúp phát hiện mức độ tương đồng và các dấu hiệu cần chú ý.
                   </p>
                 </div>
               </div>
@@ -80,10 +74,9 @@ const HomePage = () => {
                   <Shield className="feature-icon" />
                 </div>
                 <div>
-                  <h3 className="feature-title">Secure & Private</h3>
+                  <h3 className="feature-title">Bảo mật & riêng tư</h3>
                   <p className="feature-description">
-                    Your documents are encrypted and never stored. We prioritize your privacy and data security above
-                    all else.
+                    Ưu tiên quyền riêng tư và an toàn dữ liệu trong quá trình xử lý.
                   </p>
                 </div>
               </div>
@@ -95,10 +88,9 @@ const HomePage = () => {
                   <Clock className="feature-icon" />
                 </div>
                 <div>
-                  <h3 className="feature-title">Instant Results</h3>
+                  <h3 className="feature-title">Kết quả nhanh</h3>
                   <p className="feature-description">
-                    Get comprehensive plagiarism reports in seconds. No waiting, no delays - just fast, accurate
-                    results.
+                    Trả kết quả trong thời gian ngắn để bạn kịp thời chỉnh sửa.
                   </p>
                 </div>
               </div>
@@ -110,9 +102,9 @@ const HomePage = () => {
                   <BarChart3 className="feature-icon" />
                 </div>
                 <div>
-                  <h3 className="feature-title">Detailed Reports</h3>
+                  <h3 className="feature-title">Báo cáo chi tiết</h3>
                   <p className="feature-description">
-                    Receive in-depth analysis with highlighted matches, similarity percentages, and source citations.
+                    Hiển thị mức độ tương đồng, câu có rủi ro và thông tin đối chiếu.
                   </p>
                 </div>
               </div>
@@ -124,7 +116,7 @@ const HomePage = () => {
       {/* Footer */}
       <footer className="bg-gray-50 border-t py-8">
         <div className="max-w-6xl mx-auto px-4 text-center text-muted-foreground">
-          <p>© 2025 PlagiarismCheck. All rights reserved.</p>
+          <p>© 2025 Checker. Bảo lưu mọi quyền.</p>
         </div>
       </footer>
     </div>

@@ -45,11 +45,11 @@ const LoginPage = () => {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link to="/" className="text-3xl font-bold text-primary">
-            PlagiarismCheck
+            Checker
           </Link>
-          <h1 className="text-2xl font-bold mt-6 mb-2">Welcome Back</h1>
+          <h1 className="text-2xl font-bold mt-6 mb-2">Chào mừng quay lại</h1>
           <p className="text-muted-foreground">
-            Sign in to your account to continue
+            Đăng nhập để tiếp tục
           </p>
         </div>
 
@@ -75,7 +75,7 @@ const LoginPage = () => {
 
             <div>
               <label className="block text-sm font-medium mb-2">
-                Password
+                Mật khẩu
               </label>
               <Input
                 type="password"
@@ -89,29 +89,29 @@ const LoginPage = () => {
             <div className="flex items-center justify-between text-sm">
               <label className="flex items-center gap-2">
                 <input type="checkbox" className="rounded" />
-                <span>Remember me</span>
+                <span>Ghi nhớ đăng nhập</span>
               </label>
               <Link to="#" className="text-primary hover:underline">
-                Forgot password?
+                Quên mật khẩu?
               </Link>
             </div>
 
             <Button type="submit" className="w-full" size="lg" disabled={loading}>
-              {loading ? "Signing In..." : "Sign In"}
+              {loading ? "Đang đăng nhập..." : "Đăng nhập"}
             </Button>
           </form>
 
           <div className="mt-6 text-center text-sm">
-            <span className="text-muted-foreground">Don't have an account? </span>
+            <span className="text-muted-foreground">Chưa có tài khoản? </span>
             <Link to="/signup" className="text-primary hover:underline font-medium">
-              Sign up
+              Đăng ký
             </Link>
           </div>
         </Card>
 
         <div className="text-center mt-6">
           <Link to="/" className="text-sm text-muted-foreground hover:text-primary">
-            ← Back to Home
+            ← Về trang chủ
           </Link>
         </div>
       </div>

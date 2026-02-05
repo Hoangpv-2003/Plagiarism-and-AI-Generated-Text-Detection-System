@@ -31,7 +31,7 @@ const SignupPage = () => {
     setError("");
 
     if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match!");
+      setError("Mật khẩu xác nhận không khớp!");
       return;
     }
 
@@ -70,11 +70,11 @@ const SignupPage = () => {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link to="/" className="text-3xl font-bold text-primary">
-            PlagiarismCheck
+            Checker
           </Link>
-          <h1 className="text-2xl font-bold mt-6 mb-2">Create Account</h1>
+          <h1 className="text-2xl font-bold mt-6 mb-2">Tạo tài khoản</h1>
           <p className="text-muted-foreground">
-            Sign up to start checking for plagiarism
+            Đăng ký để bắt đầu sử dụng
           </p>
         </div>
 
@@ -87,12 +87,12 @@ const SignupPage = () => {
             )}
             <div>
               <label className="block text-sm font-medium mb-2">
-                Full Name
+                Họ và tên
               </label>
               <Input
                 type="text"
                 name="name"
-                placeholder="John Doe"
+                placeholder="Nguyễn Văn A"
                 value={formData.name}
                 onChange={handleChange}
                 required
@@ -115,7 +115,7 @@ const SignupPage = () => {
 
             <div>
               <label className="block text-sm font-medium mb-2">
-                Password
+                Mật khẩu
               </label>
               <Input
                 type="password"
@@ -129,7 +129,7 @@ const SignupPage = () => {
 
             <div>
               <label className="block text-sm font-medium mb-2">
-                Confirm Password
+                Xác nhận mật khẩu
               </label>
               <Input
                 type="password"
@@ -145,34 +145,34 @@ const SignupPage = () => {
               <label className="flex items-start gap-2">
                 <input type="checkbox" className="mt-1 rounded" required />
                 <span className="text-muted-foreground">
-                  I agree to the{" "}
+                  Tôi đồng ý với{" "}
                   <Link to="#" className="text-primary hover:underline">
-                    Terms of Service
+                    Điều khoản dịch vụ
                   </Link>{" "}
-                  and{" "}
+                  và{" "}
                   <Link to="#" className="text-primary hover:underline">
-                    Privacy Policy
+                    Chính sách bảo mật
                   </Link>
                 </span>
               </label>
             </div>
 
             <Button type="submit" className="w-full" size="lg" disabled={loading}>
-              {loading ? "Creating..." : "Create Account"}
+              {loading ? "Đang tạo..." : "Tạo tài khoản"}
             </Button>
           </form>
 
           <div className="mt-6 text-center text-sm">
-            <span className="text-muted-foreground">Already have an account? </span>
+            <span className="text-muted-foreground">Đã có tài khoản? </span>
             <Link to="/login" className="text-primary hover:underline font-medium">
-              Sign in
+              Đăng nhập
             </Link>
           </div>
         </Card>
 
         <div className="text-center mt-6">
           <Link to="/" className="text-sm text-muted-foreground hover:text-primary">
-            ← Back to Home
+            ← Về trang chủ
           </Link>
         </div>
       </div>

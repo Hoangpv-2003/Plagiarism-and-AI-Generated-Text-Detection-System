@@ -1,15 +1,8 @@
 import React from 'react';
 
-/**
- * Component to display text with highlighted suspicious sentences
- * Color coding based on confidence level:
- * - Red (high): confidence >= 0.7
- * - Orange (medium): confidence >= 0.5 && < 0.7
- * - Yellow (low): confidence >= 0.3 && < 0.5
- */
 const HighlightedText = ({ sentenceAnalysis }) => {
   if (!sentenceAnalysis || sentenceAnalysis.length === 0) {
-    return <p className="text-gray-500">No text to display</p>;
+    return <p className="text-gray-500">Không có văn bản để hiển thị</p>;
   }
 
   const getHighlightColor = (confidence, isSuspicious) => {
@@ -60,23 +53,23 @@ const HighlightedText = ({ sentenceAnalysis }) => {
 
       {/* Legend */}
       <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
-        <h4 className="text-sm font-semibold mb-3">Highlight Legend:</h4>
+        <h4 className="text-sm font-semibold mb-3">Mức độ:</h4>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 bg-red-200 border-l-4 border-red-500 rounded"></div>
-            <span>High (≥70%)</span>
+            <span>Cao (≥70%)</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 bg-orange-200 border-l-4 border-orange-500 rounded"></div>
-            <span>Medium (50-70%)</span>
+            <span>Trung bình (50-70%)</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 bg-yellow-200 border-l-4 border-yellow-500 rounded"></div>
-            <span>Low (30-50%)</span>
+            <span>Thấp (30-50%)</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 bg-white border-2 border-gray-300 rounded"></div>
-            <span>Original</span>
+            <span>Nguyên bản</span>
           </div>
         </div>
       </div>
@@ -84,7 +77,7 @@ const HighlightedText = ({ sentenceAnalysis }) => {
       {/* Suspicious Sentences Details */}
       {sentenceAnalysis.filter(s => s.is_suspicious).length > 0 && (
         <div className="mt-6">
-          <h4 className="text-sm font-semibold mb-3">Suspicious Sentences Details:</h4>
+          <h4 className="text-sm font-semibold mb-3">Chi tiết câu nghi ngờ:</h4>
           <div className="space-y-3">
             {sentenceAnalysis
               .filter(s => s.is_suspicious)
@@ -110,7 +103,7 @@ const HighlightedText = ({ sentenceAnalysis }) => {
                   
                   {item.source_title && (
                     <div className="text-xs text-gray-600">
-                      <span className="font-semibold">Possible Source:</span> {item.source_title}
+                      <span className="font-semibold">Nguồn:</span> {item.source_title}
                     </div>
                   )}
                   
@@ -122,7 +115,7 @@ const HighlightedText = ({ sentenceAnalysis }) => {
                         rel="noopener noreferrer"
                         className="text-blue-600 hover:text-blue-800 hover:underline"
                       >
-                        View Source →
+                        Xem nguồn →
                       </a>
                     </div>
                   )}

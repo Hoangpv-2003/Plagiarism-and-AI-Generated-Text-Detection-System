@@ -87,7 +87,7 @@
 .nav-logo {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #2563eb;
+  color: hsl(var(--foreground));
   text-decoration: none;
 }
 
@@ -99,13 +99,13 @@
 
 .nav-link {
   text-decoration: none;
-  color: #64748b;
+  color: hsl(var(--foreground));
   font-weight: 500;
   transition: color 0.2s;
 }
 
 .nav-link:hover {
-  color: #2563eb;
+  color: hsl(var(--foreground));
 }
 
 .hero-section {

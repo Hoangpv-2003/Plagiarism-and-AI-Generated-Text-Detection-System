@@ -20,7 +20,7 @@ const ReportPage = () => {
 
   useEffect(() => {
     if (!token) {
-      setError("Please log in to view the report.");
+      setError("Vui lòng đăng nhập để xem báo cáo.");
       setLoading(false);
       return;
     }
@@ -31,7 +31,7 @@ const ReportPage = () => {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();
-        if (!res.ok) throw new Error(data?.message || "Failed to load report");
+        if (!res.ok) throw new Error(data?.message || "Tải báo cáo thất bại");
         setHistory(data.history);
         setReport(data.report);
       } catch (e) {
@@ -72,7 +72,7 @@ const ReportPage = () => {
           <Link to="/history">
             <Button variant="ghost" size="sm">
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to History
+              Quay lại Lịch sử
             </Button>
           </Link>
         </div>
@@ -81,18 +81,18 @@ const ReportPage = () => {
           <Card className="p-8 text-center">
             <AlertCircle className="w-12 h-12 mx-auto mb-3 text-red-500" />
             <div className="text-red-600 font-medium mb-2">{error}</div>
-            <div className="text-sm text-muted-foreground">Make sure you are logged in.</div>
+            <div className="text-sm text-muted-foreground">Hãy đảm bảo bạn đã đăng nhập.</div>
           </Card>
         )}
 
-        {loading && <Card className="p-8">Loading report...</Card>}
+        {loading && <Card className="p-8">Đang tải báo cáo...</Card>}
 
         {!loading && !error && history && normalized && (
           <>
             <div className="mb-4">
-              <h1 className="text-3xl font-bold">Report Detail</h1>
+              <h1 className="text-3xl font-bold">Chi tiết báo cáo</h1>
               <p className="text-muted-foreground mt-1">
-                {history.title || "Untitled"} • {history.wordCount} words • {new Date(history.createdAt).toLocaleString()}
+                {history.title || "Chưa đặt tên"} • {history.wordCount} từ • {new Date(history.createdAt).toLocaleString()}
               </p>
             </div>
 
@@ -123,7 +123,7 @@ const ReportPage = () => {
               </Card>
 
               <Card className="p-6">
-                <div className="text-sm text-muted-foreground">Best Match Score</div>
+                <div className="text-sm text-muted-foreground">Điểm nguồn tương đồng tốt nhất</div>
                 <div className="text-3xl font-bold text-orange-600">
                   {normalized.best_match?.final_score ? (normalized.best_match.final_score * 100).toFixed(1) : '0.0'}%
                 </div>

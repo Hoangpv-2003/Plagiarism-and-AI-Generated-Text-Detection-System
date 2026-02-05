@@ -16,31 +16,35 @@ const Header = () => {
     <nav className="nav-container">
       <div className="nav-content">
         <div className="nav-items">
-          <Link to="/" className="nav-logo">
-            PlagiarismCheck
-          </Link>
-          <div className="nav-links">
-            <Link to="/checker" className="nav-link">
+          <div className="flex items-center gap-6">
+            <Link to="/" className="nav-logo">
               Checker
             </Link>
+            <div className="flex items-center gap-4">
+              <Link to="/plagiarism" className="nav-link">
+                Kiểm tra đạo văn
+              </Link>
+              <Link to="/ai" className="nav-link">
+                Kiểm tra AI
+              </Link>
+            </div>
+          </div>
+
+          <div className="nav-links">
             <Link to="/history" className="nav-link">
-              History
+              Lịch sử
             </Link>
+
             {isAuthenticated ? (
               <Button variant="outline" size="sm" onClick={handleLogout}>
-                Logout
+                Đăng xuất
               </Button>
             ) : (
-              <>
-                <Link to="/login">
-                  <Button variant="outline" size="sm">
-                    Login
-                  </Button>
-                </Link>
-                <Link to="/signup">
-                  <Button size="sm">Sign Up</Button>
-                </Link>
-              </>
+              <Link to="/login">
+                <Button variant="outline" size="sm">
+                  Đăng nhập
+                </Button>
+              </Link>
             )}
           </div>
         </div>

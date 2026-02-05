@@ -3,11 +3,26 @@
 /backend/node-auth/node_modules
 /backend/node-auth/.env
 /frontend/node_modules
+
+# python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.python-version
+/.venv/
+/venv/
+
+# backend artifacts
+/backend/data/
+/backend/model/
+
 # dependencies
 /node_modules
 /.pnp
 .pnp.js
-/backend/model
 # testing
 /coverage
 

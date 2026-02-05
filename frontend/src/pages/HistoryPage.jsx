@@ -18,7 +18,7 @@ const HistoryPage = () => {
     if (!token) {
       setLoading(false);
       setItems([]);
-      setError("Please log in to view your history.");
+      setError("Vui lòng đăng nhập để xem lịch sử.");
       return;
     }
     (async () => {
@@ -30,7 +30,7 @@ const HistoryPage = () => {
           },
         });
         const data = await res.json();
-        if (!res.ok) throw new Error(data?.message || "Failed to load history");
+        if (!res.ok) throw new Error(data?.message || "Tải lịch sử thất bại");
         setItems(Array.isArray(data.items) ? data.items : []);
       } catch (e) {
         setError(e.message);
@@ -49,9 +49,9 @@ const HistoryPage = () => {
       {/* Main Content */}
       <div className="max-w-6xl mx-auto px-4 py-8">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold mb-2">Check History</h1>
+          <h1 className="text-4xl font-bold mb-2">Lịch sử kiểm tra</h1>
           <p className="text-muted-foreground">
-            View your previous plagiarism checks
+            Xem lại các lần kiểm tra trước đó
           </p>
         </div>
 
@@ -62,7 +62,7 @@ const HistoryPage = () => {
         )}
 
         {loading && (
-          <Card className="p-6">Loading history...</Card>
+          <Card className="p-6">Đang tải lịch sử...</Card>
         )}
 
         {!loading && items.length > 0 && (
@@ -75,13 +75,13 @@ const HistoryPage = () => {
                     <FileText className="w-6 h-6 text-primary" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-semibold text-lg mb-1">{item.title || "Untitled"}</h3>
+                    <h3 className="font-semibold text-lg mb-1">{item.title || "Chưa đặt tên"}</h3>
                     <div className="flex items-center gap-4 text-sm text-muted-foreground">
                       <span className="flex items-center gap-1">
                         <Clock className="w-4 h-4" />
                         {new Date(item.createdAt).toLocaleString()}
                       </span>
-                      <span>{item.wordCount} words</span>
+                      <span>{item.wordCount} từ</span>
                     </div>
                   </div>
                 </div>
@@ -93,10 +93,10 @@ const HistoryPage = () => {
                   }`}>
                     {item.similarity}%
                   </div>
-                  <div className="text-sm text-muted-foreground">similarity</div>
+                  <div className="text-sm text-muted-foreground">độ tương đồng</div>
                   <Link to={`/history/${item.id}`}>
                     <Button variant="outline" size="sm" className="mt-2">
-                      View Report
+                      Xem báo cáo
                     </Button>
                   </Link>
                 </div>
@@ -109,12 +109,12 @@ const HistoryPage = () => {
         {!loading && items.length === 0 && (
           <Card className="p-12 text-center">
             <FileText className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
-            <h3 className="text-xl font-semibold mb-2">No History Yet</h3>
+            <h3 className="text-xl font-semibold mb-2">Chưa có lịch sử</h3>
             <p className="text-muted-foreground mb-6">
-              Start checking documents to see your history here
+              Hãy bắt đầu kiểm tra để xem lịch sử tại đây
             </p>
-            <Link to="/checker">
-              <Button>Check Your First Document</Button>
+            <Link to="/plagiarism">
+              <Button>Kiểm tra tài liệu đầu tiên</Button>
             </Link>
           </Card>
         )}

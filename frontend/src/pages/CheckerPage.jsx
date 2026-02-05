@@ -244,7 +244,7 @@ const CheckerPage = () => {
       const aiResult = {
         type: 'ai_check',
         combined_prob_ai: result.data?.combined_prob_ai || 0,
-        combined_label: result.data?.combined_label || 'Nguoi viet',
+        combined_label: result.data?.combined_label || 'Thấp -Người Viết',
         sentence_analysis: result.data?.sentence_analysis || [],
         high_risk_sentences: result.data?.high_risk_sentences || [],
         stats: result.data?.stats || {},
