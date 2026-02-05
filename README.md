@@ -40,7 +40,7 @@ Hệ thống gồm 3 dịch vụ backend + 1 frontend:
 - **JWT** (`jsonwebtoken`) + **bcrypt** (hash mật khẩu)
 - **dotenv**
 
-### Model / dữ liệu (tóm tắt)
+### Model / dữ liệu 
 
 - PhoBERT (VinAI) và các model fine-tuned (local trong `backend/model/`)
 - Index/embeddings và các file dữ liệu phục vụ truy hồi (local trong `backend/data/`)
@@ -48,7 +48,7 @@ Hệ thống gồm 3 dịch vụ backend + 1 frontend:
 ## 4) Mô hình học sâu & pipeline xử lý
 
 
-### 4.1) Plagiarism Detection (Flask)
+### 4.1) Plagiarism Detection 
 
 
 
@@ -83,7 +83,7 @@ Hệ thống gồm 3 dịch vụ backend + 1 frontend:
 - `backend/notebooks/Plagiarism_check_final.ipynb`: logic tham chiếu cho plagiarism pipeline
 - `backend/notebooks/Check_AI.ipynb`: logic tham chiếu cho AI detection pipeline
 
-## 5) Chuẩn bị dữ liệu & model (bắt buộc)
+## 5) Chuẩn bị dữ liệu & model
 
 Repo đã cấu hình `.gitignore` để **không commit** các thư mục lớn `backend/data/` và `backend/model/`.
 Vì vậy trước khi chạy, bạn cần tải 2 thư mục này về máy.
