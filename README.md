@@ -17,6 +17,16 @@ Hệ thống gồm 3 dịch vụ backend + 1 frontend:
 - **Phát hiện AI-generated text**: trả về xác suất AI, nhãn phân loại, và (nếu có) danh sách đoạn được highlight
 - **Tài khoản & lịch sử**: đăng ký/đăng nhập, lưu và xem lại các lần kiểm tra
 
+## Demo / Screenshots
+
+### Kết quả kiểm tra đạo văn
+
+![Plagiarism result](docs/screenshots/Check_Plagiarism.png)
+
+### Kết quả kiểm tra AI
+
+![AI detection result](docs/screenshots/Check_AI.png)
+
 ## 3) Công nghệ / công cụ đã dùng
 
 ### Frontend
