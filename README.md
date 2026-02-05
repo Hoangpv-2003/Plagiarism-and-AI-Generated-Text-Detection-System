@@ -45,7 +45,45 @@ Hệ thống gồm 3 dịch vụ backend + 1 frontend:
 - PhoBERT (VinAI) và các model fine-tuned (local trong `backend/model/`)
 - Index/embeddings và các file dữ liệu phục vụ truy hồi (local trong `backend/data/`)
 
-## 4) Chuẩn bị dữ liệu & model (bắt buộc)
+## 4) Mô hình học sâu & pipeline xử lý
+
+
+### 4.1) Plagiarism Detection (Flask)
+
+
+
+- **Tách câu / chia đoạn (chunking)**: đầu vào được chuẩn hoá và tách câu, sau đó ghép/tách để tạo các “đơn vị so khớp”.
+- **Embedding semantic (Deep Learning)**:
+  - Dùng **Sentence-Transformers** với model `bkai-foundation-models/vietnamese-bi-encoder` để encode các câu/đoạn thành vector embedding.
+  - Embedding được **chuẩn hoá** và so khớp bằng **dot-product/cosine**.
+- **Truy hồi nhanh trên kho corpus**:
+  - Dùng embedding đã được tính sẵn trong `backend/data/chunk_embeddings_normalized.npy`.
+  - Dùng **FAISS index** `backend/data/chunk_faiss_index.faiss` (khi có) để tăng tốc tìm top-k ứng viên.
+- **Chấm điểm & tổng hợp**:
+  - Kết hợp tín hiệu semantic similarity + các đặc trưng heuristic (lexical overlap, thứ tự câu, độ liên tiếp, …) để ra điểm cuối.
+- **Kiểm tra paraphrase bằng PhoBERT fine-tuned**:
+  - Với các cặp nghi ngờ “diễn đạt lại”, hệ thống có thể dùng **PhoBERT fine-tuned dạng sequence classification** (local) để xác nhận paraphrase.
+  - Model mặc định được tìm trong `backend/model/phobert_finetuned/` (hoặc set biến môi trường `PHOBERT_PARAPHRASE_MODEL_DIR`).
+
+### 4.2) AI-Generated Text Detection (Flask)
+
+
+- **Classifier PhoBERT fine-tuned (Deep Learning)**:
+  - Load model phân loại từ thư mục local `backend/model/detector_phobert/` bằng **Transformers + PyTorch**.
+  - Trả về xác suất AI cho từng cửa sổ (window) và tổng hợp theo văn bản.
+- **Pseudo-Perplexity bằng MaskedLM (Deep Learning)**:
+  - Dùng `vinai/phobert-base` dạng **Masked Language Model** để tính pseudo-perplexity như một feature bổ sung.
+- **Combiner (Machine Learning)**:
+  - Load `backend/data/combiner_logreg.joblib` để kết hợp nhiều feature (xác suất classifier, pseudo-ppl, thống kê độ dài/đặc trưng văn bản, …) thành `combined_prob_ai`.
+- **Highlight đoạn nghi ngờ AI**:
+  - Tách câu/đoạn và chạy dự đoán để trả về `highlighted_segments` (nếu khởi tạo được), giúp UI tô màu đoạn nghi ngờ.
+
+### 4.3) Notebook / tài liệu thực nghiệm
+
+- `backend/notebooks/Plagiarism_check_final.ipynb`: logic tham chiếu cho plagiarism pipeline
+- `backend/notebooks/Check_AI.ipynb`: logic tham chiếu cho AI detection pipeline
+
+## 5) Chuẩn bị dữ liệu & model (bắt buộc)
 
 Repo đã cấu hình `.gitignore` để **không commit** các thư mục lớn `backend/data/` và `backend/model/`.
 Vì vậy trước khi chạy, bạn cần tải 2 thư mục này về máy.
@@ -60,7 +98,7 @@ backend/
   model/       # detector_phobert, phobert_finetuned...
 ```
 
-## 5) Cài đặt & chạy
+## 6) Cài đặt & chạy
 
 Hướng dẫn chi tiết: [SETUP_GUIDE.md](SETUP_GUIDE.md)
 
@@ -96,7 +134,7 @@ npm install
 npm start
 ```
 
-## 6) API endpoints
+## 7) API endpoints
 
 ### Plagiarism API (mặc định port 5000)
 
@@ -113,13 +151,9 @@ npm start
 - `GET /health`
 - `/api/auth/*`, `/api/history/*`, `/api/ai-check/*`
 
-## 7) Biến môi trường (tuỳ chọn)
+## 8) Biến môi trường (tuỳ chọn)
 
 - `PHOBERT_PARAPHRASE_MODEL_DIR`: trỏ tới thư mục model PhoBERT paraphrase (nếu bạn đặt ngoài `backend/model/`).
 - `AI_PORT`: đổi port AI Detection API (mặc định 5002).
 - `PORT`, `MONGO_URI`, `JWT_SECRET`, `CORS_ORIGIN`: cấu hình cho Node Auth API (xem `backend/node-auth/.env`).
 
-## 8) Ghi chú về Git
-
-- `backend/data/` và `backend/model/` được ignore để tránh đẩy file lớn lên Git.
-- Nếu bạn muốn version hoá các file lớn, cân nhắc dùng **Git LFS**.
